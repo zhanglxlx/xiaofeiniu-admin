@@ -9,6 +9,7 @@ import axios from 'axios'
 
 Vue.use(ElementUI)//注册ElementUI 插件
 Vue.prototype.$axios=axios; //把axiso设置为所有的Vue组件实例的成员属性，以后可以使用this.$axios使用一部请求功能
+
 Vue.config.productionTip = false
 // 创建全局过滤器
 Vue.filter("date",(val)=>{
@@ -30,6 +31,7 @@ Vue.filter("date",(val)=>{
   return yy+"-"+mm+"-"+dd;
 
 })
+
 Vue.filter("datetime",(val)=>{
   //把bigint转换为YYYY-MM-DD hh:mm:ss
   var date=new Date(val);
@@ -48,10 +50,12 @@ Vue.filter("datetime",(val)=>{
 
   return yy+"-"+mm+"-"+dd+" "+hh+":"+dd+":"+ss;
 })
+
 Vue.filter("currency",(val)=>{
   //把bigint转换为￥ xx.yy
   return '￥'+val.toFixed(2);
 })
+
 Vue.filter('tableStatus',(val)=>{
   if(val==1) return '空闲';
   else if(val==2) return '预定';
@@ -59,9 +63,10 @@ Vue.filter('tableStatus',(val)=>{
   else return '其他';
 })
 
-
+//全局对象
 new Vue({
   router,
-  store,
-  render: h => h(App)
+  store,            //指定当前项目唯一的Vuex存储仓库对象，其中保存着可供所有组件共享的数据
+  render:h=>h(App)  //根据App组件创建<App></App>  元素，挂在到#app颞部
 }).$mount('#app')
+ 
