@@ -11,17 +11,10 @@
     <el-table :data="categoryList">
       <el-table-column label="编号" prop="cid"></el-table-column>
       <el-table-column label="名称" prop="cname"></el-table-column>
-
-       <tr :v-for="(c, i) in categoryList">
-            <td>{{c.cid}}</td>
-            <td>{{c.cname}}</td>  
-            <td><a @click="delete(c.cid)"></a></td>  
-        </tr>
-
       <el-table-column label="操作">
-          <template>
-            <el-button @click="deletaCategory()" type="success" size="mini">修改</el-button>
-            <el-button type="error" size="mini">删除</el-button>
+          <template slot-scope="{row,$index}"> 
+            <el-button  @click="updateCategory($index)" type="success" size="mini">修改{{$index}}</el-button>
+            <el-button  @click="deletaCategory($index)" type="danger" size="mini">删除{{$index}}</el-button>
           </template>
         </el-table-column>
       
@@ -39,7 +32,6 @@ export default {
   mounted(){
     var url=this.$store.state.globalSettings.apiUrl+`/admin/category`;
     this.$axios.get(url).then((res)=>{
-      console.log(res);
       this.categoryList=res.data;
     }).catch((err)=>{
       console.log(err)
