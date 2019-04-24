@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!--<h6>全局配置：{{$store.state.globalSettings}}</h6>-->
     <router-view/>
   </div>
 </template>
@@ -15,7 +16,7 @@
     mounted(){  //当前组件挂载完成后需要异步请求全局配置数据
         var url=this.$store.state.globalSettings.apiUrl+"admin/settings";
         this.$axios.get(url).then((res)=>{
-          this.$store.commit('setGlobalSettings',res.data);//将全局设置存储在Vuex中
+          this.$store.commit('setGlobalSettings',res.data);//将全局设置存储在Vuex仓库中
           // console.log(res.data);
         }).catch((err)=>{
           console.log(err)

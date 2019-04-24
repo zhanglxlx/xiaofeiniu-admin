@@ -45,7 +45,7 @@
     },
     methods:{ 
       doLogin:function(){  //执行登录
-        var url=this.$store.state.globalSettings.apiUrl+`admin/admin/login/${this.formData.aname}/${this.formData.apwd}`
+        var url=this.$store.state.globalSettings.apiUrl+`/admin/admin/login/${this.formData.aname}/${this.formData.apwd}`
         this.$axios.get(url).then((res)=>{
           if(res.data.code==200){  //登录成功
           //把用户名存入Vuex存储仓库
@@ -65,4 +65,4 @@
       }
     },
   }
-</script>、
+</script>

@@ -55,7 +55,7 @@ Vue.filter("currency",(val)=>{
   //把bigint转换为￥ xx.yy
   return '￥'+val.toFixed(2);
 })
-
+// 桌台状态
 Vue.filter('tableStatus',(val)=>{
   if(val==1) return '空闲';
   else if(val==2) return '预定';
