@@ -7,14 +7,14 @@
     </el-breadcrumb>
     <br>
     <el-row>
-      <el-col v-for="(t,i) in tableList"  :xl="2" :lg="4" :md="6" :sm="8" :xs="12" >
-        <xfn-table :data="t">{{t}}</xfn-table>
+      <el-col v-for="(t,i) in tableList" :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
+        <xfn-table :data="t">{{t.status}}</xfn-table>
       </el-col>
 
     </el-row>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss"></style>
 
 </style>
 <script>
@@ -27,9 +27,8 @@ import Table from "../components/Table"
     },
     mounted(){
       var url=this.$store.state.globalSettings.apiUrl+`/admin/table`;
-      this.$axios.get(url).then((res)=>{
-        console.log(res.data)
-        this.tableList=res.data
+      this.$axios.get(url).then(({data})=>{
+        this.tableList=data
       }).catch((err)=>{
         console.log(err)
       })
