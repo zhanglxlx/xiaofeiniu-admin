@@ -13,7 +13,7 @@
             <el-tabs type="border-card" @tab-click="makeQrcode">
                 <el-tab-pane label="桌台状态">状态：{{data.status | tableStatus}}</el-tab-pane>
                 <el-tab-pane label="桌台二维码">
-                    <canvas id="qrcanvas"></canvas>
+                    <img :src="qrcodeData" alt="">
                     <br>
                     <a href="#">下载二维码</a>
                 </el-tab-pane>
@@ -29,8 +29,8 @@
 export default {
     data(){
         return {
-            dialogTableDetailVisisble:false,
-            
+            dialogTableDetailVisisble:false,    
+            qrcodeData:''        //二维码图片数据
         }
     },
     props:['data'],
@@ -51,19 +51,18 @@ export default {
         makeQrcode(){
             // 创建二维码--注意此处方法不能再当前组件的mounted中调用，因为绘图必需的canvas在el-dialog中，对话框在组件加载时并不是挂在dom树上的
             var qrcode=require('qrcode');
-            var canvas=document.getElementById('qrcanvas');
-            console.log(canvas)
             // 每个桌子对应的URL应该行如：
             //http：//127.0.0.1:8092/#/3
             var tableUrl=this.$store.state.globalSettings.appUrl+`/#/${this.data.tid}`
             console.log(tableUrl);
+            // 把绘制得到的图片二进制数据转换为字符编码
             qrcode.toDataURL(tableUrl,{
                 width:300,
                 errorCorrectionLevel:'L'
             },(err,url)=>{
                 if(err){throw err}
                 console.log(url)
-                canvas=url;
+                this.qrcodeData=url;
             });
 
         }
