@@ -76,7 +76,7 @@ export default {
         border-radius:100%;
         .xfn_table{
             margin: 5px auto;
-            width:50%;
+            width:100%;
             height: 120px;
             line-height: 120px;
             border:1px solid #aaa;

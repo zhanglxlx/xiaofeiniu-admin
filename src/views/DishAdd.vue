@@ -15,7 +15,6 @@
         </el-upload>
       </el-form-item>
     </el-form>
-
   </div>
 </template>
 <script>
@@ -31,7 +30,6 @@ export default {
         detail:'',
         categoryId:''
       }
-
     }
   },
   methods:{
@@ -45,14 +43,12 @@ export default {
     },
     // beforeAvatarUpload(file){
     //   const isJPG=file.type==='image/jpeg';
-
     // }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-// scoped只在当前作用域有效
+// 第一种写法
+<style lang="scss">
   .xfn_uploader {
     .el-upload {
       border:1px dotted #aaa;
@@ -70,3 +66,23 @@ export default {
     }
   }
 </style>
+// 第二种写法
+<style scoped>
+/* // scoped只在当前作用域有效 */
+/* // 样式渗透 */
+  .xfn_uploader >>>.el-upload {
+      border:1px dotted #aaa;
+      border-radius:3px;
+      cursor:pointer;
+      width:250px;
+      height:177px;
+      overflow:hidden;
+    }
+    .xfn_uploader >>>.el-upload:hover{
+       border-color:#409EFF;
+    }
+    img{
+      width:100%
+    }
+</style>
+
