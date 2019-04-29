@@ -40,7 +40,7 @@
             </el-menu-item-group>
           </el-submenu>
           <!--菜单项5-->
-          <el-menu-item index="/order">
+          <el-menu-item index="/order/list">
             <i class="el-icon-date"></i>
             <span slot="title">订单管理</span>
           </el-menu-item>
